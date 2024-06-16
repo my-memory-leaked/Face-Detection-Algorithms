@@ -28,4 +28,4 @@ def detect_objects(image_path, classifier_path, scale_factor=0.5):
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    detect_objects('../photo.png', '../local-binary-patterns-cascade/opencv/lbpcascade_frontalface.xml')
+    detect_objects('../../2.jpg', '../local-binary-patterns-cascade/opencv/lbpcascade_frontalface.xml')

@@ -28,4 +28,4 @@ def detect_objects(image_path, classifier_path, scale_factor=0.5):
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    detect_objects('../2.jpg', '../haar-cascade/opencv/haarcascade_frontalface_default.xml', scale_factor=0.5)
+    detect_objects('../../1.jpg', '../haar-cascade/cascade.xml', scale_factor=0.5)
