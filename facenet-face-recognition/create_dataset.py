@@ -65,8 +65,11 @@ def load_dataset(dir):
     return np.asarray(X), np.asarray(y)
 
 # Ensure the directories exist before loading datasets
-train_dir = '../../divided1/train/'
-test_dir = '../../divided1/test/'
+# train_dir = '../../datasets/faces/test'
+# test_dir = '../../datasets/faces/test'
+
+train_dir = '../../datasets/emotions/test'
+test_dir = '../../datasets/emotions/test'
 
 if os.path.exists(train_dir):
     # Load train dataset
@@ -83,4 +86,4 @@ else:
     print(f"Testing directory does not exist: {test_dir}")
 
 # Save and compress the dataset for further use
-np.savez_compressed('process/dataset.npz', trainX, trainy, testX, testy)
+np.savez_compressed('process/emotions-dataset.npz', trainX, trainy, testX, testy)

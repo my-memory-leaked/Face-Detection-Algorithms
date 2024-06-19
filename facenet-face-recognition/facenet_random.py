@@ -7,11 +7,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Load the original dataset to get access to the testX images
-original_data = np.load('process/dataset.npz')
+original_data = np.load('process/emotions-dataset.npz')
 trainX, trainy, testX, testy = original_data['arr_0'], original_data['arr_1'], original_data['arr_2'], original_data['arr_3']
 
 # Load the embeddings dataset
-data = np.load('process/embeddings.npz')
+data = np.load('process/emotions-embeddings.npz')
 emdTrainX, trainy, emdTestX, testy = data['arr_0'], data['arr_1'], data['arr_2'], data['arr_3']
 
 # Normalize input vectors
@@ -58,5 +58,5 @@ plt.title(title)
 plt.show()
 
 # Save the plot as an image file
-plt.savefig('results/plot.png')
+plt.savefig('results/emotions-plot.png')
 plt.close()
