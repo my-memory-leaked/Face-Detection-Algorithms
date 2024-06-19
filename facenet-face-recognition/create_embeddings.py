@@ -10,9 +10,9 @@ print('Loaded: ', trainX.shape, trainy.shape, testX.shape, testy.shape)
 try:
     # load the facenet model
     # facenet_model = load_model(model_path)
-    import input.inception_resnet_v1 as inception_resnet_v1
+    import models.inception_resnet_v1 as inception_resnet_v1
     facenet_model = inception_resnet_v1.InceptionResNetV1()
-    facenet_model.load_weights('input/facenet_keras_weights.h5')
+    facenet_model.load_weights('models/facenet_keras_weights.h5')
     print('Loaded Model')
 except Exception as e:
     print(f"Error loading model: {e}")

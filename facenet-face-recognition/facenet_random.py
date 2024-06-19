@@ -58,5 +58,5 @@ plt.title(title)
 plt.show()
 
 # Save the plot as an image file
-plt.savefig('output/plot.png')
+plt.savefig('results/plot.png')
 plt.close()
