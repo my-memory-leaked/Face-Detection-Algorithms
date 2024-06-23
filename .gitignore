@@ -1,6 +1,6 @@
 pictures
-output/
-process/
+output
+process
 Original-Images
 __pycache__
 pic

@@ -13,7 +13,7 @@ def replace_spaces_with_hyphens(directory):
                     print(f"Renamed directory: {old_path} -> {new_path}")
                 except Exception as e:
                     print(f"Error renaming directory {old_path} to {new_path}: {e}")
-        
+
         for name in files:
             new_name = name.replace(" ", "-")
             if new_name != name:
@@ -46,6 +46,6 @@ def detect_and_save_negatives(base_dir, output_file, classifier_path):
                         f.write(f'{image_path}\n')
 
 if __name__ == "__main__":
-    dataset_dir = 'dataset/Original Images'
+    dataset_dir = '../dataset/Original Images'
     replace_spaces_with_hyphens(dataset_dir)
-    detect_and_save_negatives('dataset/Original-Images', 'dataset/negatives.txt', 'haar-cascade-project/haar-cascade/opencv/haarcascade_frontalface_default.xml')
+    detect_and_save_negatives('../dataset/Original-Images', '../dataset/negatives.txt', '../haar-cascade-project/haar-cascade/opencv/haarcascade_frontalface_default.xml')
