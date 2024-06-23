@@ -4,8 +4,19 @@ import cv2
 from mtcnn.mtcnn import MTCNN
 from matplotlib import pyplot as plt
 from keras.models import load_model
+from keras import config as kcfg
 from PIL import Image
+# import tensorflow as tf
 import os
+# import logging
+# import keras
+
+
+# os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+# tf.get_logger().setLevel('WARNING')
+# logging.getLogger('keras').setLevel(logging.WARNING)
+# logging.getLogger('tensorflow').setLevel(logging.WARNING)
+kcfg.disable_interactive_logging()
 
 # Extract a single face from a given photograph
 def extract_face(filename, required_size=(160, 160)):
@@ -65,21 +76,19 @@ def load_dataset(dir):
     return np.asarray(X), np.asarray(y)
 
 # Ensure the directories exist before loading datasets
-# train_dir = '../../datasets/faces/test'
+# train_dir = '../../datasets/faces/train'
 # test_dir = '../../datasets/faces/test'
 
-train_dir = '../../datasets/emotions/test'
+train_dir = '../../datasets/emotions/train'
 test_dir = '../../datasets/emotions/test'
 
 if os.path.exists(train_dir):
-    # Load train dataset
     trainX, trainy = load_dataset(train_dir)
     print(trainX.shape, trainy.shape)
 else:
     print(f"Training directory does not exist: {train_dir}")
 
 if os.path.exists(test_dir):
-    # Load test dataset
     testX, testy = load_dataset(test_dir)
     print(testX.shape, testy.shape)
 else:

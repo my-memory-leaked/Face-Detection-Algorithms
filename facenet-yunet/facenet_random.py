@@ -1,11 +1,10 @@
-from sklearn.metrics import accuracy_score, confusion_matrix
-from sklearn.preprocessing import LabelEncoder, Normalizer
+from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import Normalizer
 from sklearn.svm import SVC
 from random import choice
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
-import pandas as pd
 
 # Load the original dataset to get access to the testX images
 original_data = np.load('process/emotions-dataset.npz')
@@ -27,7 +26,8 @@ trainy_enc = out_encoder.transform(trainy)
 testy_enc = out_encoder.transform(testy)
 
 # Fit model
-model = SVC(kernel='linear', probability=True)
+# model = SVC(kernel='linear', probability=True)
+model = SVC(kernel='poly', degree=7, probability=True)
 model.fit(emdTrainX_norm, trainy_enc)
 
 # Select a random face from the test set
@@ -58,48 +58,6 @@ title = '%s (%.3f)' % (predict_names[0], class_probability)
 plt.title(title)
 plt.show()
 
-# Predict the classes for the entire test set
-yhat_test_all = model.predict(emdTestX_norm)
-
-# Predict probabilities for the entire test set
-yhat_prob_all = model.predict_proba(emdTestX_norm)
-
-# Create confusion matrix
-cm = confusion_matrix(testy_enc, yhat_test_all)
-
-# Plot and save confusion matrix
-plt.figure(figsize=(14, 14))
-sns.heatmap(cm, annot=True, fmt='d', cmap='Reds', xticklabels=out_encoder.classes_, yticklabels=out_encoder.classes_)
-plt.xlabel('Predicted')
-plt.ylabel('True')
-plt.title('Confusion Matrix')
-plt.savefig('results/emotions-confusion_matrix.png')
-plt.close()
-
-# Create probability matrix
-prob_matrix = np.zeros((len(out_encoder.classes_), len(out_encoder.classes_)))
-for true_label in range(len(out_encoder.classes_)):
-    mask = (testy_enc == true_label)
-    prob_matrix[true_label, :] = yhat_prob_all[mask].mean(axis=0)
-
-plt.figure(figsize=(20, 20))
-sns.heatmap(prob_matrix, annot=True, fmt='.2f', cmap='Reds', xticklabels=out_encoder.classes_, yticklabels=out_encoder.classes_)
-plt.xlabel('Predicted Probabilities')
-plt.ylabel('True Labels')
-plt.title('Probability Matrix')
-plt.savefig('results/emotions-probability_matrix.png')
-plt.close()
-
-
-# Apply logarithmic scale to the probability matrix
-log_prob_matrix = np.log1p(prob_matrix)  # log1p is used to handle zero values
-
-# Plot and save probability matrix with logarithmic scale
-plt.figure(figsize=(20, 20))
-sns.heatmap(log_prob_matrix, annot=True, fmt='.2f', cmap='Reds', xticklabels=out_encoder.classes_, yticklabels=out_encoder.classes_)
-plt.xlabel('Predicted Probabilities (log scale)')
-plt.ylabel('True Labels')
-plt.title('Probability Matrix (Log Scale)')
-plt.savefig('results/emotions-probability_matrix_log.png')
-plt.close()
-
+# Save the plot as an image file
+# plt.savefig('results/emotions-plot-random.png')
+# plt.close()
