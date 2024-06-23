@@ -9,16 +9,20 @@ import os
 import time
 
 # Disable interactive logging
-# kcfg.disable_interactive_logging()
+kcfg.disable_interactive_logging()
 
 # Initialize the YuNet face detector
 detector = cv2.FaceDetectorYN.create("models/face_detection_yunet_2023mar.onnx", "", (320, 320))
 
 # Function to extract a single face from a given photograph using YuNet
 def extract_face(filename, required_size=(160, 160)):
+    # Load image from file
     image = Image.open(filename)
+    # Convert to RGB, if needed
     image = image.convert('RGB')
+    # Convert to array
     pixels = np.asarray(image)
+    # Convert to BGR for OpenCV
     img = cv2.cvtColor(pixels, cv2.COLOR_RGB2BGR)
 
     # Resize the image to a standard size if it's too large
@@ -27,6 +31,7 @@ def extract_face(filename, required_size=(160, 160)):
         scaling_factor = max_dim / max(img.shape)
         img = cv2.resize(img, (int(img.shape[1] * scaling_factor), int(img.shape[0] * scaling_factor)))
 
+    # Get image dimensions
     img_W = int(img.shape[1])
     img_H = int(img.shape[0])
 
@@ -44,6 +49,10 @@ def extract_face(filename, required_size=(160, 160)):
     x1, y1, width, height = int(x1), int(y1), int(width), int(height)
     x2, y2 = x1 + width, y1 + height
 
+    # Ensure the coordinates are within the image dimensions
+    x1, y1 = max(0, x1), max(0, y1)
+    x2, y2 = min(img_W, x2), min(img_H, y2)
+
     # Extract the face
     face = img[y1:y2, x1:x2]
     # Resize pixels to the model size
@@ -55,6 +64,7 @@ def extract_face(filename, required_size=(160, 160)):
 # Load all faces in a directory
 def load_face(dir):
     faces = list()
+    # Enumerate files
     for filename in os.listdir(dir):
         path = os.path.join(dir, filename)
         try:
@@ -78,9 +88,6 @@ def load_dataset(dir):
             y.extend(labels)
     return np.asarray(X), np.asarray(y)
 
-#########################
-
-# DATASET DIRECTORIES
 train_dir = '../../datasets/faces/train'
 test_dir = '../../datasets/faces/test'
 
@@ -97,4 +104,4 @@ else:
     print(f"Testing directory does not exist: {test_dir}")
 
 # Save and compress the dataset for further use
-np.savez_compressed('process/faces-dataset-yunet.npz', trainX, trainy, testX, testy)
+np.savez_compressed('process/faces-dataset.npz', trainX, trainy, testX, testy)
