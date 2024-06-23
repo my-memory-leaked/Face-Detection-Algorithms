@@ -9,7 +9,7 @@ import os
 import time
 
 # Disable interactive logging
-kcfg.disable_interactive_logging()
+# kcfg.disable_interactive_logging()
 
 # Initialize the YuNet face detector
 detector = cv2.FaceDetectorYN.create("models/face_detection_yunet_2023mar.onnx", "", (320, 320))
@@ -104,4 +104,4 @@ else:
     print(f"Testing directory does not exist: {test_dir}")
 
 # Save and compress the dataset for further use
-np.savez_compressed('process/faces-dataset.npz', trainX, trainy, testX, testy)
+np.savez_compressed('process/faces-dataset-yunet.npz', trainX, trainy, testX, testy)

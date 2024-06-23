@@ -7,19 +7,16 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 
-# krnl = 'linear'
+krnl = 'linear'
 # krnl = 'sigmoid'
-krnl = 'poly'
-
-dtst = 'emotions'
-# dtst = 'faces'
+# krnl = 'poly'
 
 # Load the original dataset to get access to the testX images
-original_data = np.load('process/' + dtst +'-dataset.npz')
+original_data = np.load('../yunet-face-detection/process/faces-dataset-yunet.npz')
 trainX, trainy, testX, testy = original_data['arr_0'], original_data['arr_1'], original_data['arr_2'], original_data['arr_3']
 
 # Load the embeddings dataset
-data = np.load('process/' + dtst +'-embeddings.npz')
+data = np.load('process/faces-embeddings-yunet.npz')
 emdTrainX, trainy, emdTestX, testy = data['arr_0'], data['arr_1'], data['arr_2'], data['arr_3']
 
 # Normalize input vectors
@@ -36,7 +33,7 @@ testy_enc = out_encoder.transform(testy)
 # Fit model
 # model = SVC(kernel=krnl, probability=True) # linear, standard
 # model = SVC(kernel=krnl, class_weight='balanced', probability=True) # sigmoid
-model = SVC(kernel=krnl, degree=7, probability=True)
+model = SVC(kernel=krnl, probability=True)
 model.fit(emdTrainX_norm, trainy_enc)
 
 # Select a random face from the test set
@@ -82,7 +79,7 @@ sns.heatmap(cm, annot=True, fmt='d', cmap='Reds', xticklabels=out_encoder.classe
 plt.xlabel('Predicted')
 plt.ylabel('True')
 plt.title('Confusion Matrix')
-plt.savefig('results/emotions-confusion_matrix-'+krnl+'dg7.png')
+plt.savefig('results/faces-confusion_matrix-'+krnl+'-yunet.png')
 plt.close()
 
 # Create probability matrix
@@ -96,7 +93,7 @@ sns.heatmap(prob_matrix, annot=True, fmt='.2f', cmap='Reds', xticklabels=out_enc
 plt.xlabel('Predicted Probabilities')
 plt.ylabel('True Labels')
 plt.title('Probability Matrix')
-plt.savefig('results/emotions-probability_matrix-'+krnl+'dg7.png')
+plt.savefig('results/faces-probability_matrix-'+krnl+'-yunet.png')
 plt.close()
 
 
@@ -109,6 +106,6 @@ sns.heatmap(log_prob_matrix, annot=True, fmt='.2f', cmap='Reds', xticklabels=out
 plt.xlabel('Predicted Probabilities (log scale)')
 plt.ylabel('True Labels')
 plt.title('Probability Matrix (Log Scale)')
-plt.savefig('results/emotions-probability_matrix_log-'+krnl+'dg7.png')
+plt.savefig('results/faces-probability_matrix_log-'+krnl+'-yunet.png')
 plt.close()
 

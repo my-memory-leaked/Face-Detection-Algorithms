@@ -3,7 +3,7 @@ import tensorflow as tf
 from keras.models import load_model
 
 # load the face dataset
-data = np.load('process/emotions-dataset.npz')
+data = np.load('../yunet-face-detection/process/faces-dataset-yunet.npz')
 trainX, trainy, testX, testy = data['arr_0'], data['arr_1'], data['arr_2'], data['arr_3']
 print('Loaded: ', trainX.shape, trainy.shape, testX.shape, testy.shape)
 
@@ -48,4 +48,4 @@ emdTestX = np.asarray(emdTestX)
 print(emdTestX.shape)
 
 # save arrays to one file in compressed format
-np.savez_compressed('process/emotions-embeddings-yunet.npz', emdTrainX, trainy, emdTestX, testy)
+np.savez_compressed('process/faces-embeddings-yunet.npz', emdTrainX, trainy, emdTestX, testy)
