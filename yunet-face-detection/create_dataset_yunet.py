@@ -88,8 +88,8 @@ def load_dataset(dir):
             y.extend(labels)
     return np.asarray(X), np.asarray(y)
 
-train_dir = '../../datasets/faces/train'
-test_dir = '../../datasets/faces/test'
+train_dir = '../../datasets/emotions/train'
+test_dir = '../../datasets/emotions/test'
 
 if os.path.exists(train_dir):
     trainX, trainy = load_dataset(train_dir)
@@ -104,4 +104,4 @@ else:
     print(f"Testing directory does not exist: {test_dir}")
 
 # Save and compress the dataset for further use
-np.savez_compressed('process/faces-dataset-yunet.npz', trainX, trainy, testX, testy)
+np.savez_compressed('process/emotions-dataset-yunet.npz', trainX, trainy, testX, testy)

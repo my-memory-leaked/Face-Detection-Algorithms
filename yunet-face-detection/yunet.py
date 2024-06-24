@@ -58,7 +58,7 @@ for filename in os.listdir(image_dir):
     img = cv2.putText(img, f"Inf Time: {inf_time}s", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 3, cv2.LINE_AA)
 
     # Save the image with detections
-    output_path = os.path.join(image_dir, f"processed_{filename}")
+    # output_path = os.path.join(image_dir, f"processed_{filename}")
     cv2.imwrite(output_path, img)
 
     # Display the image (optional)
