@@ -19,5 +19,5 @@ def create_negatives_file(negatives_dir, output_file):
                 f.write(f'{negatives_dir}/{filename}\n')
 
 if __name__ == "__main__":
-    create_positives_file('../dataset/positives', '../dataset/positives.txt')
-    create_negatives_file('../dataset/negatives', '../dataset/negatives.txt')
+    create_positives_file('../dataset/lbp/positives', '../dataset/lbp/positives.txt')
+    create_negatives_file('../dataset/lbp/negatives', '../dataset/lbp/negatives.txt')
