@@ -9,3 +9,4 @@ Projekt obejmuje wykorzystanie następujących algorytmów do detekcji twarzy:
 - **Marta:** Sieć głęboka VGG
 - **Karol:** Kaskadowy klasyfikator Haara, Lokalne Wzorce Dwójkowe (Local Binary Patterns)
 - **Szymon:** Sieć YuNet, Sieć głęboka Facenet
+

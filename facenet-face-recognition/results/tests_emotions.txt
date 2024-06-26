@@ -1,0 +1,43 @@
+sklearn.utils._param_validation.InvalidParameterError: The 'degree' parameter of SVC must be an int in the range [0, inf). Got -1 instead.
+szymon@szymon-ubuntu2204:~/Documents/WK/wkiro-2024/facenet-face-recognition$ python3 facenet.py
+Dataset: train=4052, test=1035
+Settings: kernel= poly
+Accuracy: train=14.437, test=13.623
+szymon@szymon-ubuntu2204:~/Documents/WK/wkiro-2024/facenet-face-recognition$ python3 facenet.py
+Dataset: train=4052, test=1035
+Settings: kernel= poly
+Accuracy: train=46.742, test=39.420
+szymon@szymon-ubuntu2204:~/Documents/WK/wkiro-2024/facenet-face-recognition$ python3 facenet.py
+Dataset: train=4052, test=1035
+Settings: kernel= poly
+Accuracy: train=75.494, test=46.184
+szymon@szymon-ubuntu2204:~/Documents/WK/wkiro-2024/facenet-face-recognition$ python3 facenet.py
+Dataset: train=4052, test=1035
+Settings: kernel= poly
+Accuracy: train=93.016, test=54.589
+szymon@szymon-ubuntu2204:~/Documents/WK/wkiro-2024/facenet-face-recognition$ python3 facenet.py
+Dataset: train=4052, test=1035
+Settings: kernel= poly
+Accuracy: train=96.915, test=54.010
+szymon@szymon-ubuntu2204:~/Documents/WK/wkiro-2024/facenet-face-recognition$ python3 facenet.py
+Dataset: train=4052, test=1035
+Settings: kernel= poly
+Accuracy: train=98.075, test=54.686
+szymon@szymon-ubuntu2204:~/Documents/WK/wkiro-2024/facenet-face-recognition$ python3 facenet.py
+Dataset: train=4052, test=1035
+Settings: kernel= poly
+Accuracy: train=98.643, test=46.280
+szymon@szymon-ubuntu2204:~/Documents/WK/wkiro-2024/facenet-face-recognition$ python3 facenet.py
+Dataset: train=4052, test=1035
+Settings: kernel= poly
+Accuracy: train=98.248, test=52.657
+szymon@szymon-ubuntu2204:~/Documents/WK/wkiro-2024/facenet-face-recognition$ python3 facenet.py
+Dataset: train=4052, test=1035
+Settings: kernel= poly
+Accuracy: train=98.075, test=54.686
+szymon@szymon-ubuntu2204:~/Documents/WK/wkiro-2024/facenet-face-recognition$ python3 facenet_matrices.py
+Predicted: neutral (33.581)
+Predicted probabilities:
+{'angry': 22.379901865132183, 'disgust': 1.0802635261609879, 'fear': 8.392118415188076, 'happy': 20.43572592723208, 'neutral': 33.581190180590525, 'sad': 10.751257648128057, 'surprise': 3.379542437568086}
+Expected: happy
+szymon@szymon-ubuntu2204:~/Documents/WK/wkiro-2024/facenet-face-recognition$
